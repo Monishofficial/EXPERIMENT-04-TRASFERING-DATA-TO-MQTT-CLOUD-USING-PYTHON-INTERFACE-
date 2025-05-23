@@ -1,26 +1,21 @@
-### NAME:
-### ROLL NO :
-### DEPARTMENT 
-### DATE
+### NAME: MONISH N
+### ROLL NO : 212223240097
+### DEPARTMENT : AI&ML
+### DATE:
 
-
-
-## EXPERIMENT-04-TRASFERING-DATA-TO-MQTT-CLOUD-USING-PYTHON-INTERFACE-
-
-
+## EXPERIMENT-05-TRASFERING-DATA-TO-MQTT-CLOUD-USING-PYTHON-INTERFACE-
 
 ## AIM:
 To transfer data from a Python script to an MQTT cloud server (HiveMQ Cloud) using the MQTT protocol. 
 ## APPARATUS/SOFTWARE REQUIRED: 
 1.HiveMQ Cloud account
-Python installed on your system
+2.Python installed on your system
 3. Required Python library: paho-mqtt
 4. Internet connection
 
 ## THEORY 
 ### Message Queuing Telemetry Transport (MQTT)
 MQTT is a lightweight messaging protocol used for efficient communication between devices over the Internet. It follows a publish-subscribe model, making it ideal for IoT applications.
-
 
  Message Queuing Telemetry Transport (MQTT)
 
@@ -61,7 +56,7 @@ FIGURE -01 BLOCK DIAGRAMATIC REPRESENTATION OF MQTT PROTOCOL
 
 ### PROCEDURE 
 
-Step 1: Set Up HiveMQ Cloud Account
+##### Step 1: Set Up HiveMQ Cloud Account
 
 Go to HiveMQ Cloud Console.
 
@@ -77,13 +72,13 @@ Port (default: 8883 for secure connections)
 
 Username & Password for authentication.
 
-Step 2: Install Required Python Library
+##### Step 2: Install Required Python Library
 
 Run the following command in your terminal or command prompt to install the required MQTT library:
 
 pip install paho-mqtt
 
-Step 3: Write a Python Script to Publish Data
+##### Step 3: Write a Python Script to Publish Data
 
 Create a Python script and paste the following code:
 
@@ -126,7 +121,7 @@ print(f"Message published: {message}")
 #### Disconnect
 client.disconnect()
 
-Step 4: Verify Data Reception in HiveMQ Cloud
+##### Step 4: Verify Data Reception in HiveMQ Cloud
 
 Open HiveMQ Cloud Console.
 
@@ -138,17 +133,56 @@ Run the Python script.
 
 Check if the message appears in the HiveMQ Web Client.
 ## PROGRAM
-[
+~~~
+
+import paho.mqtt.client as mqtt
+import time
+
+# HiveMQ Cloud credentials
+BROKER = "359f43e9448d4f6ebc5011e7c24dc49b.s1.eu.hivemq.cloud"  # Updated HiveMQ Cloud instance URL
+PORT = 8884  # Secure WebSocket port
+TOPIC = "sensor/temperature"
+USERNAME = "Kancharla_Narmadha"  # Replace with your HiveMQ Cloud username
+PASSWORD = "Linzz_129"  # Replace with your HiveMQ Cloud password
+
+# Fixed temperature value
+TEMPERATURE_VALUE = 25.5
+
+# Callback when the client connects to the broker
+def on_connect(client, userdata, flags, rc, properties=None):
+    if rc == 0:
+        print("Connected to HiveMQ Cloud successfully")
+    else:
+        print(f"Connection failed with code {rc}")
+
+# Create MQTT client and set WebSocket transport
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, transport="websockets")
+client.username_pw_set(USERNAME, PASSWORD)
+client.tls_set()  # Enable TLS for secure WebSockets
+client.on_connect = on_connect
+
+# Connect to HiveMQ Cloud using WebSocket
+client.connect(BROKER, PORT, 60)
+client.loop_start()
+
+# Publish temperature value repeatedly every 5 seconds
+try:
+    while True:
+        client.publish(TOPIC, TEMPERATURE_VALUE)
+        print(f"Published temperature: {TEMPERATURE_VALUE} to topic: {TOPIC}")
+        time.sleep(5)  # Adjust interval as needed
+except KeyboardInterrupt:
+    print("Stopping MQTT client...")
+    client.loop_stop()
+    client.disconnect()
 
 
-
-
-
-]
+~~~
 
 ### OUTPUT SCREENSHOTS
 
-
+![Screenshot (272)](https://github.com/user-attachments/assets/0128ad31-3c9b-4bec-9d4e-4304a92f14ac)
+![Screenshot (271)](https://github.com/user-attachments/assets/6c7301be-b2ff-4d43-b1a9-3b08ec966dbd)
 
 ## Results
 
