@@ -142,7 +142,7 @@ import time
 BROKER = "359f43e9448d4f6ebc5011e7c24dc49b.s1.eu.hivemq.cloud"  # Updated HiveMQ Cloud instance URL
 PORT = 8884  # Secure WebSocket port
 TOPIC = "sensor/temperature"
-USERNAME = "Kancharla_Narmadha"  # Replace with your HiveMQ Cloud username
+USERNAME = "MONISH N"  # Replace with your HiveMQ Cloud username
 PASSWORD = "Linzz_129"  # Replace with your HiveMQ Cloud password
 
 # Fixed temperature value
@@ -180,9 +180,9 @@ except KeyboardInterrupt:
 ~~~
 
 ### OUTPUT SCREENSHOTS
+![Screenshot (272)](https://github.com/user-attachments/assets/e89e511f-07a1-4b65-b369-b11e6a4643bc)
+![Screenshot (271)](https://github.com/user-attachments/assets/708eedbc-ff54-4118-be6b-d7bc01adeb91)
 
-![Screenshot (272)](https://github.com/user-attachments/assets/0128ad31-3c9b-4bec-9d4e-4304a92f14ac)
-![Screenshot (271)](https://github.com/user-attachments/assets/6c7301be-b2ff-4d43-b1a9-3b08ec966dbd)
 
 ## Results
 
